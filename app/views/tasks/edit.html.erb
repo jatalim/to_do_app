@@ -1,0 +1,47 @@
+<h3>Edit task</h3>
+<%= form_for @task, url: list_task_path(@task.id), method: :put do |f| %>
+
+
+	<div class = "row">
+  	<%= f.label :name %>
+  	</div>
+
+  	<div class = "row">
+ 	<%= f.text_field :name %>
+	</div>
+
+	<div class = "row">
+	<%= f.label :description %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :description %>
+ 	</div>
+
+	<div class = "row">
+	<%= f.label :priority %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :priority %>
+ 	</div>
+
+	<div class = "row">
+	<%= f.label :status %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :status %>
+ 	</div>
+
+ 		<div class = "row">
+	<%= f.label :due_date %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :due_date %>
+ 	</div>
+	<div class = "row">
+  	<%= f.submit "Update Task" %>
+	</div>
+<% end %> 

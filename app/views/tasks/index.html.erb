@@ -1,0 +1,48 @@
+
+<div class="indexpage">
+<div class = "row">
+<h1> Hi, welcome to my blog </h1>
+
+<table>
+<thead>
+<th> Title </th>
+<th> Author </th>
+<th> Created At </th>
+<th> Edit Post </th>
+<th> Destroy Post </th>
+</thead>
+
+<tbody>
+<% @tasks.each do|task| %> 
+	<tr>
+	<td>
+		<%= link_to task.name, list_task_path(task) %> 
+	</td>
+	<td>
+		<%= task.priority %> 
+	</td>
+	<td>
+		<%= task.status %> 
+	</td>
+		<td>
+		<%= task.due_date %> 
+		</td>
+	 <td> 
+	 <%= link_to "Edit", edit_list_task_path(task) %>
+	 </td>
+	 <td>
+	<%= link_to 'Destroy', list_task_path(task), 
+	method: :delete, data: { confirm: 'Are you sure?' } %>
+	 </td>
+	</tr>
+<% end %> 
+</tbody>
+</table>
+</div>
+
+<div class = "row">
+<div class = "col-xs-4 col-xs-offset-4">
+<%= button_to "Create New Post", new_post_path, :method => "get" %>
+</div>
+</div>
+</div>

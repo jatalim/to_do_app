@@ -1,0 +1,70 @@
+<div class = "row">
+<h1><%= @list.list_name %></h1>
+<%= link_to "Edit List Name", edit_list_path(list_id: @list.id) %>
+</div>
+
+<div class = "col-md-6">
+<h3>Create new tasks</h3>
+<%= form_for @task, url: list_tasks_path(list_id: @list.id), method: :post do |f| %>
+
+	<div class = "row">
+  	<%= f.label :name %>
+  	</div>
+
+  	<div class = "row">
+ 	<%= f.text_field :name %>
+	</div>
+
+	<div class = "row">
+	<%= f.label :description %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :description %>
+ 	</div>
+
+	<div class = "row">
+	<%= f.label :priority %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :priority %>
+ 	</div>
+
+	<div class = "row">
+	<%= f.label :status %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :status %>
+ 	</div>
+
+ 		<div class = "row">
+	<%= f.label :due_date %>
+	</div>
+
+	<div class = "row">
+ 	<%= f.text_field :due_date %>
+ 	</div>
+
+
+	<div class = "row">
+  	<%= f.submit "Create" %>
+	</div>
+<% end %> 
+</div>
+
+<div class = "col-md-6">
+<h2>Your Tasks</h2>
+<% @list.tasks.each do |task| %>
+<h4> <%= task.name %> </h4>
+<%= task.description %>
+Updated at <%= task.updated_at.strftime("%d %b %Y, %T") %>
+<%= task.priority %> 
+<%= task.status %>
+<%= task.due_date %>
+<%= link_to "Edit Task", edit_list_task_path(list_id: @list.id, id: task) %>
+<%= link_to link_to 'Destroy', list_task_path(list_id: @list.id, id: task), 
+				method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+</div>
