@@ -3,7 +3,7 @@
 <%= link_to "Edit List Name", edit_list_path(list_id: @list.id) %>
 </div>
 
-<div class = "col-md-7 new_task">
+<div class = "col-md-7 task_list">
 	<h3>Your Tasks</h3>
 		<table class = "table">
 			<thead>
@@ -22,7 +22,7 @@
 					</td>
 					<td>
 					<% if task.due_date && task.due_date < DateTime.now %>
-  				 	<span class = "overdue"> Overdue </span>
+  				 	<span class="label label-danger">Overdue</span>
   				 	<%else task.due_date && task.due_date > DateTime.now %>
   				 	Due in <%=distance_of_time_in_words(DateTime.now, task.due_date)%> 
 					<% end %>

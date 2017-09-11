@@ -28,7 +28,7 @@
 					Updated at <%= @task.updated_at.strftime("%d %b %Y, %T") %>
 					</td>
 					<td>
-					<%= link_to edit_list_task_path(id: @task), class: 'btn btn-success btn-xs' do%>
+					<%= link_to edit_list_task_path(id: @task), class: 'btn btn-primary btn-xs' do%>
                 	<i class = "glyphicon glyphicon-pencil"></i> 
                 	<%end%>
 					</td>
@@ -45,9 +45,9 @@
 
 					<td>
 					<% if @task.due_date && @task.due_date < DateTime.now %>
-  				 	<span class = "overdue"> Overdue </span>
+  				 	<span class="label label-danger">Overdue</span>
   				 	<% else %>
-  				 	<span class = "not_overdue"> Not Overdue </span>
+  				 	<span class="label label-success">On Track</span>
   				 	<% end %>
 					</td>
 

@@ -1,8 +1,18 @@
 class ListsController < ApplicationController
 
+	def task_params
+	task = Task.all
+	params.require(:task).permit(:name, :term)
+	end 
+
 	def index 
 	@list = List.all
-	@task = Task.all 
+	@task = if params[:term]
+		Task.where('name LIKE ?', "%#{params[:term]}%")
+
+			else
+				Task.all 
+			end 
 	end 
 
 	def show

@@ -9,7 +9,7 @@ class TasksController < ApplicationController
 	end 
 
 	def complete
-	@task = Task.where(id: params[:task_id]).update(status: true)
+	@task = Task.where(id: params[:id]).update(:status)
 	flash[:notice] = "Task completed!"
 	render :show 
 	end 

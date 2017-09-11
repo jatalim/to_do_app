@@ -33,9 +33,15 @@ h1 {
 	text-align: center;
 }
 
-.task_list_header {
+h3 {
+	text-align: center;
+}
+
+
+.task_list_header{
 text-align: center;
 }
+
 
 .new_task{
 	padding: 3%; 
@@ -44,7 +50,13 @@ text-align: center;
 	text-align: center;  
 }
 
-.table_head {
+.task_list{
+	padding: 3%; 
+	background-color: #F8F8F8;
+	border: solid 1px lightgrey; 
+}
+
+.table_head{
 text-align: center;	
 }
 
