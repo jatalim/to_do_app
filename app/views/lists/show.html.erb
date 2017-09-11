@@ -27,15 +27,8 @@
   				 	Due in <%=distance_of_time_in_words(DateTime.now, task.due_date)%> 
 					<% end %>
 					</td>
-				<td>
-					<form>
-					 <div class="checkbox">
-    				<label>
-					<%= link_to check_box_tag '@task_id[]', complete_path, :method => "get" %>
-					<%= label_tag(:status, "Completed") %>
-    				</label>
-					</div>
-					</form>
+					<td>
+					<%= task.status %>
 					</td>
 
 				</tr>
@@ -48,10 +41,9 @@
 <div class = "col-md-1">
 </div>
 	
-	<div class = "col-md-4 new_task">
-	<h3>Create new tasks</h3>
-	<form>
+	<div class = "col-md-4">
 	<%= form_for @task, url: list_tasks_path(list_id: @list.id), method: :post do |f| %>
+						<h3>Create new tasks</h3>
 						<div class = "row">
 			  			<%= f.label :name %>
 			  			</div>
@@ -60,21 +52,26 @@
 					 	<%= f.text_field :name %>
 						</div>
 
-						<div class = "row">
+					 	<p>
+					 	<div class = "row">
 						<%= f.label :priority %>
 						</div>
-
 						<div class = "row">
-					 	<%= f.text_field :priority %>
-					 	</div>
+						<%= f.radio_button :priority, 'Low' %> Low 
+						<%= f.radio_button :priority, 'Medium' %> Medium 
+						<%= f.radio_button :priority, 'High' %> High 
+						</div>
+						</p>
 
-						<div class = "row">
+					 	<p>
+					 	<div class = "row">
 						<%= f.label :status %>
 						</div>
-
 						<div class = "row">
-					 	<%= f.text_field :status %>
-					 	</div>
+						<%= f.radio_button :status, 'In_progress' %> In Progress 
+						<%= f.radio_button :status, 'Completed' %> Completed 
+						</div>
+						</p>
 
 					 	<div class = "row">
 						<%= f.label :due_date %>
@@ -84,14 +81,15 @@
 					 	<%= f.text_field :due_date %>
 					 	</div>
 
+					
+
 					 	<br>
 					 	</br>
 
 						<div class = "row">
-					  	<%= f.submit "Create New Task" %>
+					  	<%= f.submit "Create" %>
 						</div>
 	<% end %> 	
-	</form>
 
 
 </div>

@@ -8,20 +8,14 @@ class TasksController < ApplicationController
 	@task = Task.find(params[:id])
 	end 
 
-	def complete
-	@task = Task.where(id: params[:id]).update(:status)
-	flash[:notice] = "Task completed!"
-	render :show 
-	end 
-
 	def new
 	@task = Task.new 
 	end
 
 	def create
 	list = List.find(params[:list_id])
-	task_params = params.require(:task).permit(:name, :priority)
-	list.tasks.create(task_params)
+	task_params = params.require(:task).permit(:name, :priority, :status, :due_date)
+	task = list.tasks.create(task_params)
 	redirect_to list_path(id: list.id)
 	end
 

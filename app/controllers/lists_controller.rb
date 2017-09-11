@@ -8,17 +8,15 @@ class ListsController < ApplicationController
 	def index 
 	@list = List.all
 	@task = if params[:term]
-		Task.where('name LIKE ?', "%#{params[:term]}%")
-
+			Task.where('name LIKE ?', "%#{params[:term]}%")
 			else
-				Task.all 
+			Task.all 
 			end 
 	end 
 
 	def show
 	@list = List.find(params[:id])
 	@task = Task.new
-
 	end 
 
 	def new
