@@ -1,70 +1,96 @@
-<div class = "row">
+<div class = "jumbotron task_list_header">
 <h1><%= @list.list_name %></h1>
 <%= link_to "Edit List Name", edit_list_path(list_id: @list.id) %>
 </div>
 
-<div class = "col-md-6">
-<h3>Create new tasks</h3>
-<%= form_for @task, url: list_tasks_path(list_id: @list.id), method: :post do |f| %>
+<div class = "col-md-6 new_task">
+	<h3>Your Tasks</h3>
+		<table class = "table">
+			<thead>
+			<div class = "table_head">
+				<th> Task name </th>
+				<th> Due </th>
+				<th> Status </th>
+			</div>
+			</thead>
 
-	<div class = "row">
-  	<%= f.label :name %>
-  	</div>
+			<tbody>
+				<% @list.tasks.each do |task| %>
+				<tr>
+					<td>
+					<%= link_to task.name, list_task_path(list_id: @list.id, id: task) %> 
+					</td>
+					<td>
+					<% if task.due_date && task.due_date < DateTime.now %>
+  				 	<span class = "overdue"> Overdue </span>
+  				 	<%else task.due_date && task.due_date > DateTime.now %>
+  				 	Due in <%=distance_of_time_in_words(DateTime.now, task.due_date)%> 
+					<% end %>
+					</td>
+				<td>
+					<form>
+					 <div class="checkbox">
+    				<label>
+					<%= link_to check_box_tag '@task_id[]', complete_path, :method => "get" %>
+					<%= label_tag(:status, "Completed") %>
+    				</label>
+					</div>
+					</form>
+					</td>
 
-  	<div class = "row">
- 	<%= f.text_field :name %>
-	</div>
-
-	<div class = "row">
-	<%= f.label :description %>
-	</div>
-
-	<div class = "row">
- 	<%= f.text_field :description %>
- 	</div>
-
-	<div class = "row">
-	<%= f.label :priority %>
-	</div>
-
-	<div class = "row">
- 	<%= f.text_field :priority %>
- 	</div>
-
-	<div class = "row">
-	<%= f.label :status %>
-	</div>
-
-	<div class = "row">
- 	<%= f.text_field :status %>
- 	</div>
-
- 		<div class = "row">
-	<%= f.label :due_date %>
-	</div>
-
-	<div class = "row">
- 	<%= f.text_field :due_date %>
- 	</div>
-
-
-	<div class = "row">
-  	<%= f.submit "Create" %>
-	</div>
-<% end %> 
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+</div>
+	
+<div class = "col-md-1">
 </div>
 
-<div class = "col-md-6">
-<h2>Your Tasks</h2>
-<% @list.tasks.each do |task| %>
-<h4> <%= task.name %> </h4>
-<%= task.description %>
-Updated at <%= task.updated_at.strftime("%d %b %Y, %T") %>
-<%= task.priority %> 
-<%= task.status %>
-<%= task.due_date %>
-<%= link_to "Edit Task", edit_list_task_path(list_id: @list.id, id: task) %>
-<%= link_to link_to 'Destroy', list_task_path(list_id: @list.id, id: task), 
-				method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+	<div class = "col-md-4 new_task">
+	<h3>Create new tasks</h3>
+	<form>
+	<%= form_for @task, url: list_tasks_path(list_id: @list.id), method: :post do |f| %>
+						<div class = "row">
+			  			<%= f.label :name %>
+			  			</div>
+
+					  	<div class = "row">
+					 	<%= f.text_field :name %>
+						</div>
+
+						<div class = "row">
+						<%= f.label :priority %>
+						</div>
+
+						<div class = "row">
+					 	<%= f.text_field :priority %>
+					 	</div>
+
+						<div class = "row">
+						<%= f.label :status %>
+						</div>
+
+						<div class = "row">
+					 	<%= f.text_field :status %>
+					 	</div>
+
+					 	<div class = "row">
+						<%= f.label :due_date %>
+						</div>
+
+						<div class = "row">
+					 	<%= f.text_field :due_date %>
+					 	</div>
+
+					 	<br>
+					 	</br>
+
+						<div class = "row">
+					  	<%= f.submit "Create New Task" %>
+						</div>
+	<% end %> 	
+	</form>
+
+
 </div>

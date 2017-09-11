@@ -6,5 +6,6 @@ resources :lists do
 resources :tasks
 end 
 
+get 'complete', to: 'tasks#complete'
 
 end

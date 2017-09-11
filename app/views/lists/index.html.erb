@@ -7,7 +7,7 @@
 <table class = "table">
 	<thead>
 	<th> List Name </th>
-	<th> Updated At </th>
+	<th> Last Update </th>
 	<th> Edit List </th>
 	<th> Destroy List </th>
 	</thead>
@@ -18,18 +18,22 @@
 				<td>
 				<%= link_to list.list_name, list_path(list) %> 
 				</td>
-	
+
 				<td>
-				<%= list.updated_at.strftime("%d %b %Y, %T") %> 
+				Updated at <%= list.updated_at.strftime("%d %b %Y, %T") %>
 				</td>
 	
 				<td> 
-	 			<%= link_to "Edit", edit_list_path(list) %>
+                <%= link_to edit_list_path(list), class: 'btn btn-success btn-xs' do%>
+                <i class = "glyphicon glyphicon-pencil"></i> 
+                <%end%>
 				</td>
 	
 				<td>
-				<%= link_to 'Destroy', list_path(list), 
-				method: :delete, data: { confirm: 'Are you sure?' } %>
+				<%= link_to list_path(list), 
+				method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do%>
+                <i class = "glyphicon glyphicon-remove"></i> 
+                <%end%>
 				</td>
 			</tr>
 		<% end %> 

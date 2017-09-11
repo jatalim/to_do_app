@@ -8,6 +8,12 @@ class TasksController < ApplicationController
 	@task = Task.find(params[:id])
 	end 
 
+	def complete
+	@task = Task.where(id: params[:task_id]).update(status: true)
+	flash[:notice] = "Task completed!"
+	render :show 
+	end 
+
 	def new
 	@task = Task.new 
 	end
@@ -35,5 +41,6 @@ class TasksController < ApplicationController
 	@task.destroy
 	redirect_to list_path(id: @task.list.id)
 	end
+
 
 end

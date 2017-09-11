@@ -1,12 +1,14 @@
 class ListsController < ApplicationController
 
-def index 
+	def index 
 	@list = List.all
+	@task = Task.all 
 	end 
 
 	def show
 	@list = List.find(params[:id])
 	@task = Task.new
+
 	end 
 
 	def new

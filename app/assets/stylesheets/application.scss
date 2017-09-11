@@ -21,6 +21,10 @@ background-image: asset-url("vitor2.jpg");
 background-size: cover;
 }
 
+.overdue {background-color: red;}
+
+.not_overdue {background-color: lightgreen;}
+
 body {
 	font-family: 'Nunito Sans', sans-serif;
 }
@@ -28,3 +32,21 @@ body {
 h1 {
 	text-align: center;
 }
+
+.task_list_header {
+text-align: center;
+}
+
+.new_task{
+	margin-left: 5%;
+	padding: 3%; 
+	background-color: #F8F8F8;
+	border: solid 1px lightgrey;   
+	text-align: center;  
+}
+
+.table_head {
+text-align: center;	
+}
+
+

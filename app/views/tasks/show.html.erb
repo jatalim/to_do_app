@@ -1,1 +1,57 @@
-<h1> TESTING </h1>
+	<h2> <%=@task.name %> </h2>
+		<table class = "table">
+			<thead>
+				<th> Task name </th>
+				<th> Priority </th>
+				<th> Status </th>
+				<th> Due Date </th>
+				<th> Updated </th>
+				<th> Edit </th>
+				<th> Delete </th>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>
+					<%= @task.name %> 
+					</td>
+					<td>
+					<%= @task.priority %>
+					</td>
+					<td>
+					<%= @task.status %>
+					</td>
+					<td>
+					<%= @task.due_date %>
+					</td>
+					<td>
+					Updated at <%= @task.updated_at.strftime("%d %b %Y, %T") %>
+					</td>
+					<td>
+					<%= link_to edit_list_task_path(id: @task), class: 'btn btn-success btn-xs' do%>
+                	<i class = "glyphicon glyphicon-pencil"></i> 
+                	<%end%>
+					</td>
+
+					<td>
+					<%= link_to list_task_path(id: @task), 
+					method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do%>
+                	<i class = "glyphicon glyphicon-remove"></i> 
+                	<%end%>
+					</td>
+
+
+
+
+					<td>
+					<% if @task.due_date && @task.due_date < DateTime.now %>
+  				 	<span class = "overdue"> Overdue </span>
+  				 	<% else %>
+  				 	<span class = "not_overdue"> Not Overdue </span>
+  				 	<% end %>
+					</td>
+
+				</tr>
+
+			</tbody>
+		</table>
